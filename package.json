@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.3.0",
+    "@commitlint/cli": "17.0.1",
     "@side/commitlint-config": "0.1.10",
     "@side/eslint-config-base": "0.14.0",
     "@side/eslint-config-jest": "0.4.0",
