@@ -1,5 +1,5 @@
 {
-  "name": "@side/template-library",
+  "name": "@side/jest-runtime",
   "version": "0.0.0-development",
   "description": "Custom runtime for Jest which addresses memory leak issue",
   "main": "dist/index.js",
