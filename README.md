@@ -1,6 +1,3 @@
-<!-- Replace this title and any other reference to `jest-runtime` with
-the UI library's name – i.e. fastify-tools -->
-
 <div align="center">
    <h1>@side/jest-runtime</h1>
    <div>Custom runtime for Jest which addresses memory leak when using Typescript</div>
@@ -20,7 +17,7 @@ the UI library's name – i.e. fastify-tools -->
 
 </div>
 
-**NOTE** This package was intentionally left as JS instead of being converted to TS because it is only a slight modification of existing Jest code
+**NOTE** This package was intentionally left as JS instead of being converted to TS because it is only a slight modification of existing Jest code based [on this PR](https://github.com/facebook/jest/pull/12205/files#diff-c0d5b59e96fdc7ffc98405e8afb46d525505bc7b1c24916b5c8482de5a186c00R9)
 
 1. Install SWC if you haven't already `@swc/core @swc/jest`
 1. Make sure to configure SWC if you haven't already:
@@ -51,18 +48,9 @@ the UI library's name – i.e. fastify-tools -->
    };
    ```
 
-This is the template repository for creating additional typescript libraries.
-Once a new repository has been created off this template, follow the steps below
-to finalize the initial setup process:
+### Why?
 
-1. Find all relevant `TODO:` references and make adjustments accordingly
-1. Start making PRs with basic functionality - continue to next section once library is publishable
-
-## Enable Publishing
-
-1. Add your new repository to the repositories with access to [`NPM_PUBLISH_TOKEN` org level secret](https://github.com/organizations/reside-eng/settings/secrets/actions/NPM_PUBLISH_TOKEN)
-1. Create a PR removing `if: ${{ false }}` from release workflow
-1. Merge above mentioned PR to create first release - this will take a while since all PRs up until this first release will be marked as released by semantic-release
+We were seeing memory leaks using ts-jest with node >16.10. When investigating solutions [this PR fixing the issue was noticed](https://github.com/facebook/jest/pull/12205/files#diff-c0d5b59e96fdc7ffc98405e8afb46d525505bc7b1c24916b5c8482de5a186c00R9). Since it hasn't been merged, and we still wanted to share this logic, we created this lib.
 
 [npm-image]: https://img.shields.io/npm/v/@side/jest-runtime.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@side/jest-runtime
