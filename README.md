@@ -1,10 +1,9 @@
-<!-- Replace this title and any other reference to `template-library` with
+<!-- Replace this title and any other reference to `jest-runtime` with
 the UI library's name – i.e. fastify-tools -->
 
 <div align="center">
-   <h1>@side/template-library</h1>
-   <!-- TODO: Replace with actual description of the UI application -->
-   <div>Library created from reside-eng/template-library</div>
+   <h1>@side/jest-runtime</h1>
+   <div>Custom runtime for Jest which addresses memory leak when using Typescript</div>
    </br>
 </div>
 
@@ -21,23 +20,42 @@ the UI library's name – i.e. fastify-tools -->
 
 </div>
 
+**NOTE** This package was intentionally left as JS instead of being converted to TS because it is only a slight modification of existing Jest code
+
+1. Install SWC if you haven't already `@swc/core @swc/jest`
+1. Make sure to configure SWC if you haven't already:
+
+   ```
+   {
+      "jsc": {
+         "parser": {
+            "syntax": "typescript",
+            "decorators": true
+         },
+         "transform": {
+            "legacyDecorator": true,
+            "decoratorMetadata": true
+         }
+      }
+   }
+   ```
+
+1. Install custom runtime: `yarn add @side/jest-runtime`
+1. Use within `jest.config.js`:
+   ```js
+   module.exports = {
+     transform: {
+       '^.+\\.ts$': '@swc/jest',
+     },
+     runtime: '@side/jest-runtime',
+   };
+   ```
+
 This is the template repository for creating additional typescript libraries.
 Once a new repository has been created off this template, follow the steps below
 to finalize the initial setup process:
 
-1. Replace all references of `template-library` with the name of this application
-1. Create a new file starting your functionality using `src/placeholder.ts` and `src/placeholder.test.ts` as an example
-1. Remove `src/placeholder.ts` and `src/placeholder.test.ts` files
 1. Find all relevant `TODO:` references and make adjustments accordingly
-1. Set general repository settings:
-   a. Only allow squash and merge
-   a. Allow auto-merge
-   a. Allow deletion of head branches
-1. Manage access to the repo by adding the teams that need permissions. This is required for automatic PR review assignment.
-1. Set branch permissions for `main` to set required PR verifications for CI
-1. Enable the repo on [coveralls](https://coveralls.io/)
-  1. Visit settings page of repo in Coveralls - Enable pull request alerts
-  1. Make sure to enable "Leave Comments" and switch format to "Detailed", "Use Status API" - then hit save changes
 1. Start making PRs with basic functionality - continue to next section once library is publishable
 
 ## Enable Publishing
@@ -46,15 +64,15 @@ to finalize the initial setup process:
 1. Create a PR removing `if: ${{ false }}` from release workflow
 1. Merge above mentioned PR to create first release - this will take a while since all PRs up until this first release will be marked as released by semantic-release
 
-[npm-image]: https://img.shields.io/npm/v/@side/template-library.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@side/template-library
-[build-status-image]: https://github.com/reside-eng/template-library/actions/workflows/release.yml/badge.svg
-[build-status-url]: https://github.com/reside-eng/template-library/actions
-[license-image]: https://img.shields.io/npm/l/@side/template-library.svg?style=flat-square
-[license-url]: https://github.com/reside-eng/template-library/blob/main/LICENSE
+[npm-image]: https://img.shields.io/npm/v/@side/jest-runtime.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@side/jest-runtime
+[build-status-image]: https://github.com/reside-eng/jest-runtime/actions/workflows/release.yml/badge.svg
+[build-status-url]: https://github.com/reside-eng/jest-runtime/actions
+[license-image]: https://img.shields.io/npm/l/@side/jest-runtime.svg?style=flat-square
+[license-url]: https://github.com/reside-eng/jest-runtime/blob/main/LICENSE
 [code-style-image]: https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square
 [code-style-url]: https://github.com/airbnb/javascript
 [semantic-release-icon]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
-[coverage-image]: https://coveralls.io/repos/github/reside-eng/template-library/badge.svg?branch=main&t=w0cgzF
-[coverage-url]: https://coveralls.io/github/reside-eng/template-library?branch=main
+[coverage-image]: https://coveralls.io/repos/github/reside-eng/jest-runtime/badge.svg?branch=main&t=w0cgzF
+[coverage-url]: https://coveralls.io/github/reside-eng/jest-runtime?branch=main

@@ -1,21 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    '@side/base',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:jsdoc/recommended',
-    'prettier',
-  ],
-  parser: '@typescript-eslint/parser',
-  // TODO: Move settings to lint-config base
-  settings: {
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
-      },
-    },
-  },
+  extends: ['@side/base', 'plugin:jsdoc/recommended', 'prettier'],
   rules: {
     'jsdoc/require-returns-type': 0,
     'jsdoc/require-param-type': 0,
@@ -33,20 +18,6 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-      },
-    ],
-    // NOTE: This is added since eslint-plugin-import does not support exports in package.json
-    // which is what firebase-admin v10 uses. See: https://github.com/import-js/eslint-plugin-import/issues/1810
-    'import/no-unresolved': [
-      2,
-      {
-        ignore: [
-          'firebase-admin/database',
-          'firebase-admin/app',
-          'firebase-admin/auth',
-          'firebase-admin/storage',
-          'firebase-admin/firestore',
-        ],
       },
     ],
   },
