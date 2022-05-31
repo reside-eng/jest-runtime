@@ -21,8 +21,6 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
-    # TODO: Remove if from release workflow once library is ready to release
-    if: ${{ false }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
