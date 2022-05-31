@@ -1,0 +1,94 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - next
+      - next-major
+      - alpha
+      - beta
+      # N.x (maintenance release branches)
+      - '[0-9]+.x'
+
+concurrency:
+  group: release-${{ github.ref }}
+
+env:
+  NODE_VERSION: 16.x
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    # TODO: Remove if from release workflow once library is ready to release
+    if: ${{ false }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+
+      - name: Configure package manager
+        run: |
+          echo Configuring NPM_TOKEN globally for .npmrc
+          npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+          npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test --coverage --silent
+
+      - name: Build
+        run: yarn build
+
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@1.1.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic
+        with:
+          branches: |
+            [
+              '+([0-9])?(.{+([0-9]),x}).x',
+              'main',
+              'next',
+              'next-major',
+              {name: 'beta', prerelease: true},
+              {name: 'alpha', prerelease: true}
+            ]
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notification:
+    # TODO: Remove if from release workflow once library is ready to release
+    if: ${{ false }}
+    # if: always()
+    name: notification
+    needs: [publish]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - uses: technote-space/workflow-conclusion-action@v2.2.2
+
+      - uses: reside-eng/workflow-status-notification-action@v1.0.7
+        with:
+          current-status: ${{ env.WORKFLOW_CONCLUSION }}
+          slack-webhook: ${{ secrets.SLACK_WEBHOOK_PLATFORM_PROD }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

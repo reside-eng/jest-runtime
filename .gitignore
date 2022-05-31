@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+dist
+
+# misc
+.DS_Store
+*.pem
+.vscode
+.idea
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

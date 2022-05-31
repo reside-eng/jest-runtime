@@ -1,0 +1,65 @@
+{
+  "name": "@side/template-library",
+  "version": "0.0.0-development",
+  "description": "Library created from reside-eng/template-library",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint . --ext .ts,.js",
+    "build": "rimraf dist/* && tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "16.3.0",
+    "@side/commitlint-config": "0.1.10",
+    "@side/eslint-config-base": "0.14.0",
+    "@side/eslint-config-jest": "0.4.0",
+    "@side/prettier-config": "0.0.0",
+    "@tsconfig/node16": "1.0.2",
+    "@types/jest": "27.5.1",
+    "@types/node": "16.11.36",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/parser": "5.21.0",
+    "eslint": "8.16.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-jsdoc": "38.1.6",
+    "husky": "7.0.4",
+    "jest": "27.5.1",
+    "lint-staged": "12.4.3",
+    "prettier": "2.6.2",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.1.5",
+    "ts-node": "10.8.0",
+    "typescript": "4.7.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reside-eng/template-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reside-eng/template-library/issues"
+  },
+  "author": {
+    "name": "Side Engineering",
+    "url": "https://github.com/reside-eng"
+  },
+  "prettier": "@side/prettier-config",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml,graphql}": "prettier --write"
+  }
+}
