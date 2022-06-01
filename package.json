@@ -21,7 +21,7 @@
     "jest": "^28"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.1",
+    "@commitlint/cli": "17.0.2",
     "@side/commitlint-config": "0.1.10",
     "@side/eslint-config-base": "0.14.0",
     "@side/eslint-config-jest": "0.4.0",
