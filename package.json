@@ -18,23 +18,23 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "jest": "^28",
-    "jest-runtime": "^28",
-    "@jest/transform": "^28"
+    "jest": ">=28",
+    "jest-runtime": ">=28",
+    "@jest/transform": ">=28"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.2",
-    "@side/commitlint-config": "0.1.10",
-    "@side/eslint-config-base": "0.14.0",
-    "@side/eslint-config-jest": "0.4.0",
+    "@commitlint/cli": "17.1.2",
+    "@side/commitlint-config": "0.1.12",
+    "@side/eslint-config-base": "0.16.0",
+    "@side/eslint-config-jest": "0.6.0",
     "@side/prettier-config": "0.0.0",
-    "eslint": "8.17.0",
+    "eslint": "8.25.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-jsdoc": "38.1.6",
-    "husky": "7.0.4",
-    "jest": "28.1.1",
-    "lint-staged": "13.0.1",
-    "prettier": "2.7.0",
+    "eslint-plugin-jsdoc": "39.3.6",
+    "husky": "8.0.1",
+    "jest": "29.1.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
     "rimraf": "3.0.2"
   },
   "license": "MIT",

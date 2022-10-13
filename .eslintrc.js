@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     'jsdoc/require-returns-type': 0,
     'jsdoc/require-param-type': 0,
+    'jsdoc/valid-types': 0,
     quotes: ['error', 'single', { avoidEscape: true }],
     // Override airbnb extensions settings
     // TODO: Move this to lint-config base
