@@ -18,9 +18,9 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "jest": "^29",
-    "jest-runtime": "^29",
-    "@jest/transform": "^29"
+    "jest": ">=28",
+    "jest-runtime": ">=28",
+    "@jest/transform": ">=28"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
