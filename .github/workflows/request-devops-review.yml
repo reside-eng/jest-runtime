@@ -1,0 +1,13 @@
+name: Request DevOps Review
+
+on:
+  pull_request:
+    paths:
+      - '.github/**'
+      - '.yarnrc.yml'
+      - '.yarn/**'
+
+jobs:
+  request-devops-review:
+    uses: reside-eng/workflow-templates-library/.github/workflows/request-devops-review.yml@v1
+    secrets: inherit
