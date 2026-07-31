@@ -1,8 +1,12 @@
-https://github.com/orgs/reside-eng/teams/platform-tools/members
 * @reside-eng/platform-tools
-
-.github @reside-eng/platform-tools
-
-# Skip assigning dep updates (handled by Renovate)
+# ownerless carve-outs (last-match-wins): bot-flow paths — any write-access approval suffices
+.github/
 package.json
 yarn.lock
+.yarn/
+.yarnrc.yml
+# re-owned sensitive meta files (must come after the carve-outs)
+.github/CODEOWNERS @reside-eng/devops
+.github/renovate.json @reside-eng/devops
+.github/renovate.json5 @reside-eng/devops
+renovate.json @reside-eng/devops
